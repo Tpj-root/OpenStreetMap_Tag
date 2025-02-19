@@ -2,7 +2,8 @@
 OpenStreetMap (OSM)
 
 
-Sample_site
+**Sample_site**
+
 https://tpj-root.github.io/OpenStreetMap_Tag/
 
 
@@ -27,6 +28,8 @@ https://tpj-root.github.io/OpenStreetMap_Tag/
 
 **Update icon url**
 
+
+
 ```
 
     var carIcon = L.icon({
@@ -41,6 +44,7 @@ https://tpj-root.github.io/OpenStreetMap_Tag/
 
 
 **Update the circle**
+
 
 ```
     // Add markers with custom icons and colored circles
@@ -58,6 +62,7 @@ https://tpj-root.github.io/OpenStreetMap_Tag/
 
 **Rectangle (or Square)**
 
+
  ```
 L.rectangle([
     [10.774, 78.685],  // Bottom-left corner
@@ -71,7 +76,6 @@ L.rectangle([
 ```
 
 **Pentagon**
-
 
 ```
 L.polygon([
@@ -89,8 +93,7 @@ L.polygon([
 
 ```
 
-Hexagon
-
+**Hexagon**
 
 ```
     L.polygon([
@@ -113,7 +116,7 @@ Hexagon
 
 
 
-Update info
+**Update info**
 
 ```
 L.marker([10.803957, 78.686576], { icon: bikeIcon }).addTo(map)
@@ -128,9 +131,6 @@ L.marker([10.803957, 78.686576], { icon: bikeIcon }).addTo(map)
     `);
 
 ```
-
-
-
 
 
 
@@ -209,6 +209,9 @@ Last_point
 ```
 
 
+**Updated Code for Jumping Effect**
+
+
 ```
     // Define road coordinates (latitude, longitude)
     var roadCoordinates = [
@@ -270,7 +273,8 @@ Last_point
 
 
 
-Updated Code for Smooth Movement
+**Updated Code for Smooth Movement**
+
 ```
 
 function moveMarkerSmoothly(marker, coords, speed, steps) {
@@ -317,7 +321,8 @@ moveMarkerSmoothly(marker, roadCoordinates, 1000, 50);  // 1000ms per point, 50 
 
 
 
-Public_data
+**Public_data**
 
-
+```
 https://www.openstreetmap.org/traces
+```
