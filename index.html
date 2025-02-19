@@ -113,8 +113,26 @@ L.polygon([
         fillOpacity: 0.5
     }).addTo(map);
 
-L.marker([10.775159, 78.686096], { icon: carIcon }).addTo(map)
-.bindPopup("<b>Car Location</b><br>Name: SAAAII");
+// old style 
+//L.marker([10.775159, 78.686096], { icon: carIcon }).addTo(map)
+//.bindPopup("<b>Car Location</b><br>Name: SAAAII");
+
+
+//  This will always display the text near the marker without requiring a popup. Adjust iconSize and CSS as needed.
+
+const carLabel = L.divIcon({
+    className: 'car-label',
+    html: '<b>Car Location</b><br>Name: SAAAII',
+    iconSize: [100, 40] // Adjust size as needed
+});
+
+L.marker([10.775159, 78.686096], { icon: carIcon }).addTo(map);
+L.marker([10.775159, 78.686096], { icon: carLabel }).addTo(map);
+
+
+
+
+
 
 
 
