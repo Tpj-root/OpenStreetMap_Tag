@@ -209,6 +209,65 @@ Last_point
 ```
 
 
+```
+    // Define road coordinates (latitude, longitude)
+    var roadCoordinates = [
+        [10.809237, 78.695894],  // Start point
+        [10.809063, 78.695304],  
+        [10.808831, 78.694655],  
+        [10.808810, 78.693717],  
+        [10.808810, 78.693717],  
+        [10.808805, 78.691061]   // Endpoint
+    ];
+    
+
+    // Create the polyline (road)
+    L.polyline(roadCoordinates, {
+        color: 'red',
+        weight: 5,
+        opacity: 0.7
+    }).addTo(map);
+    
+    // Define moving icon
+    var User_0 = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/hardware/cast/materialicons/24px.svg',  
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+    });
+    
+    // Add moving marker to the map
+    var marker = L.marker(roadCoordinates[0], { icon: User_0 }).addTo(map);
+    
+    //  jumping effect
+    // Function to move marker along the road
+    function moveMarker(marker, coords, speed) {
+        let index = 0;
+        function animate() {
+            if (index < coords.length) {
+                marker.setLatLng(coords[index]);
+                index++;
+                setTimeout(animate, speed); // Adjust speed (milliseconds)
+            }
+        }
+        animate();
+    }
+    // If You Want Smoother Movement:
+    // Start moving the marker
+    moveMarker(marker, roadCoordinates, 500);  // Moves every 500ms
+
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 Updated Code for Smooth Movement
