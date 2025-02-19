@@ -7,6 +7,22 @@ OpenStreetMap (OSM)
 https://tpj-root.github.io/OpenStreetMap_Tag/
 
 
+### To-Do List
+
+- [ x ]      Start the project  
+- [ x ]      Design an icon  
+- [ x ]      Place the icon at the desired location  
+- [ x ]      Add detailed information  
+- [ x ]      Implement road trace colors  
+- [ x ]      Overlay two colors for better visibility  
+- [ x ]      Enable GPS location tracking with movement loop  
+- [    ]       Add a login box  
+- [    ]       Implement a chat box  
+- [    ]       Create family tree tables  
+- [    ]       Connect the database with MySQL  
+- [    ]       Establish UDP port connection  
+- [    ]       Test ping requests  
+- [    ]       Test chat functionality with other users  
 
 
 
@@ -16,7 +32,7 @@ https://tpj-root.github.io/OpenStreetMap_Tag/
 <script>
 
 ...
-.. input code
+...input code
 ...
 
 </script>
@@ -367,15 +383,6 @@ moveMarkerSmoothlyLoop(marker, roadCoordinates, 1000, 50, 5);
 
 
 ```
-
-
-
-
-
-
-
-
-
 
 
 
