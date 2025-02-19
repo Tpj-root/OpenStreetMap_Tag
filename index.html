@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Custom Icons with Colored Circles</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map { height: 1000px; }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([10.800629, 78.689921], 19);
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Define multiple custom icons
+    var bikeIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/hardware/cast/materialicons/24px.svg',  // URL to bike icon
+        iconSize: [32, 32], // Size of the icon
+        iconAnchor: [16, 32], // Bottom center anchor point
+        popupAnchor: [0, -32] // Popup offset
+    });
+
+    var carIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/alert/add_alert/materialicons/24px.svg',  // URL to car icon
+        iconSize: [32, 32], // Size of the icon
+        iconAnchor: [16, 32], // Bottom center anchor point
+        popupAnchor: [0, -32] // Popup offset
+    });
+
+    var truckIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/hardware/gamepad/materialicons/24px.svg',  // URL to truck icon
+        iconSize: [40, 40], // Size of the icon
+        iconAnchor: [20, 40], // Bottom center anchor point
+        popupAnchor: [0, -40] // Popup offset
+    });
+
+    // Add markers with custom icons and colored circles
+    L.circle([10.803957, 78.686576], {
+        color: 'blue',        // Border color
+        fillColor: 'lightblue', // Fill color
+        fillOpacity: 0.5,
+        radius: 20 // Adjust size
+    }).addTo(map);
+
+    L.marker([10.803957, 78.686576], { icon: bikeIcon }).addTo(map)
+        .bindPopup("<b>Bike Location</b><br>Name: SSSSYYY");
+
+    L.circle([10.775159, 78.686096], {
+        color: 'red',
+        fillColor: 'pink',
+        fillOpacity: 0.5,
+        radius: 20
+    }).addTo(map);
+
+    L.marker([10.775159, 78.686096], { icon: carIcon }).addTo(map)
+        .bindPopup("<b>Car Location</b><br>Name: SAAAII");
+
+    L.circle([10.777878, 78.671245], {
+        color: 'green',
+        fillColor: 'lightgreen',
+        fillOpacity: 0.5,
+        radius: 30
+    }).addTo(map);
+
+    L.marker([10.777878, 78.671245], { icon: truckIcon }).addTo(map)
+        .bindPopup("<b>Truck Location</b><br>Name: KKKK");
+</script>
+
+</body>
+</html>
