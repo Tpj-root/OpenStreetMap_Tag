@@ -313,9 +313,67 @@ function moveMarkerSmoothly(marker, coords, speed, steps) {
 // Start smoothly moving the marker
 moveMarkerSmoothly(marker, roadCoordinates, 1000, 50);  // 1000ms per point, 50 small steps
 
+```
+
+
+
+**Updated Code (Loop 5 Times)**
+
+```
+
+function moveMarkerSmoothlyLoop(marker, coords, speed, steps, loopCount) {
+    let index = 0;
+    let count = 0;
+
+    function interpolate(lat1, lon1, lat2, lon2, factor) {
+        return [
+            lat1 + (lat2 - lat1) * factor,
+            lon1 + (lon2 - lon1) * factor
+        ];
+    }
+
+    function animate() {
+        if (index < coords.length - 1) {
+            let [lat1, lon1] = coords[index];
+            let [lat2, lon2] = coords[index + 1];
+            let step = 0;
+
+            function stepMove() {
+                if (step <= steps) {
+                    let newPos = interpolate(lat1, lon1, lat2, lon2, step / steps);
+                    marker.setLatLng(newPos);
+                    step++;
+                    setTimeout(stepMove, speed / steps);
+                } else {
+                    index++;
+                    setTimeout(animate, speed); // Move to next point
+                }
+            }
+            stepMove();
+        } else {
+            count++; // Increment loop count
+            if (count < loopCount) {
+                index = 0; // Restart movement from the beginning
+                setTimeout(animate, speed);
+            }
+        }
+    }
+    animate();
+}
+
+// Start moving smoothly with loop (5 times)
+moveMarkerSmoothlyLoop(marker, roadCoordinates, 1000, 50, 5);
+
 
 
 ```
+
+
+
+
+
+
+
 
 
 

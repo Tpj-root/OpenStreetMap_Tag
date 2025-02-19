@@ -254,6 +254,103 @@ L.marker([10.777878, 78.671245], { icon: truckIcon }).addTo(map)
     // Start smoothly moving the marker
     moveMarkerSmoothly(marker, roadCoordinates, 1000, 100);  // 1000ms per point, 50 small steps
 
+
+//
+//  Updated Code with Loop
+//
+    // Define road coordinates (latitude, longitude)
+    var roadCoordinates1 = [
+        [10.835527, 78.688902],  // Start point
+        [10.835087, 78.688502],  
+        [10.834805, 78.688239],  
+        [10.834341, 78.687761],  
+        [10.834341, 78.687761],  
+        [10.833022, 78.686489],
+        [10.832585, 78.686036],
+        [10.832585, 78.686036],
+        [10.831596, 78.685597],
+        [10.827310, 78.685842],
+        [10.827073, 78.685957],
+        [10.826949, 78.689259],
+        [10.826888, 78.690763],
+        [10.826804, 78.692086],
+        [10.826762, 78.692440],
+        [10.826599, 78.693059],
+        [10.826791, 78.693126],
+        [10.827328, 78.693049],
+        [10.827866, 78.693011],
+        [10.829591, 78.692839],
+        [10.831699, 78.693126],
+        [10.834149, 78.691281],
+        [10.835666, 78.689167],
+        [10.835527, 78.688902]// End point
+    ];
+    // Create the polyline (road)
+    L.polyline(roadCoordinates1, {
+        color: 'red',
+        weight: 5,
+        opacity: 0.7
+    }).addTo(map);
+    
+    // Define moving icon
+    var User_0 = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/hardware/cast/materialicons/24px.svg',  
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+    });
+    
+    // Add moving marker to the map
+    var marker = L.marker(roadCoordinates1[0], { icon: User_0 }).addTo(map);
+    
+
+    function moveMarkerSmoothlyLoop(marker, coords, speed, steps, loopCount) {
+        let index = 0;
+        let count = 0;
+    
+        function interpolate(lat1, lon1, lat2, lon2, factor) {
+            return [
+                lat1 + (lat2 - lat1) * factor,
+                lon1 + (lon2 - lon1) * factor
+            ];
+        }
+    
+        function animate() {
+            if (index < coords.length - 1) {
+                let [lat1, lon1] = coords[index];
+                let [lat2, lon2] = coords[index + 1];
+                let step = 0;
+    
+                function stepMove() {
+                    if (step <= steps) {
+                        let newPos = interpolate(lat1, lon1, lat2, lon2, step / steps);
+                        marker.setLatLng(newPos);
+                        step++;
+                        setTimeout(stepMove, speed / steps);
+                    } else {
+                        index++;
+                        setTimeout(animate, speed); // Move to next point
+                    }
+                }
+                stepMove();
+            } else {
+                count++; // Increment loop count
+                if (count < loopCount) {
+                    index = 0; // Restart movement from the beginning
+                    setTimeout(animate, speed);
+                }
+            }
+        }
+        animate();
+    }
+    
+    // Start moving smoothly with loop (5 times)
+    moveMarkerSmoothlyLoop(marker, roadCoordinates1, 1000, 50, 5);
+
+     // FIX ME  
+    //moveMarkerSmoothlyLoop(marker, roadCoordinates, 1000, 50, 5);
+
+
 </script>
 </body>
 </html>
