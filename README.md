@@ -26,6 +26,38 @@ https://tpj-root.github.io/OpenStreetMap_Tag/
 
 
 
+Explanation:
+
+    HTML Structure:
+
+        Added a sidebar div to hold the checkboxes.
+
+        The map div is now flexed to take up the remaining space.
+
+    CSS:
+
+        The body is set to display: flex to split the screen horizontally.
+
+        The sidebar has a fixed width and a background color.
+
+        The map takes up the remaining space.
+
+    JavaScript:
+
+        Added event listeners to the checkboxes to toggle the visibility of the corresponding map elements.
+
+        Each checkbox controls the visibility of its associated layers (markers, circles, rectangles, polygons, and polylines).
+
+
+        
+
+
+
+
+
+
+
+
 
 ```
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -383,6 +415,20 @@ moveMarkerSmoothlyLoop(marker, roadCoordinates, 1000, 50, 5);
 
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

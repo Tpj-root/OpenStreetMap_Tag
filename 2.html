@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Custom Icons with Colored Circles</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 250px;
+            background: #f4f4f4;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        #map {
+            flex: 1;
+            height: 100%;
+        }
+        .checkbox-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h3>Toggle Visibility</h3>
+        <div class="checkbox-item">
+            <label>
+                <input type="checkbox" id="toggleBike" checked> Bike
+            </label>
+        </div>
+        <div class="checkbox-item">
+            <label>
+                <input type="checkbox" id="toggleCar" checked> Car
+            </label>
+        </div>
+        <div class="checkbox-item">
+            <label>
+                <input type="checkbox" id="toggleTruck" checked> Truck
+            </label>
+        </div>
+        <div class="checkbox-item">
+            <label>
+                <input type="checkbox" id="toggleUser0" checked> User 0
+            </label>
+        </div>
+        <div class="checkbox-item">
+            <label>
+                <input type="checkbox" id="toggleRoad" checked> Road
+            </label>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([10.800629, 78.689921], 19);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Define multiple custom icons
+        var bikeIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/hardware/cast/materialicons/24px.svg',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+
+        var carIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/alert/add_alert/materialicons/24px.svg',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+
+        var truckIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/hardware/gamepad/materialicons/24px.svg',
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            popupAnchor: [0, -40]
+        });
+
+        var User_0 = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/src/hardware/cast/materialicons/24px.svg',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+
+        // Add markers with custom icons and colored circles
+        var bikeCircle = L.circle([10.803957, 78.686576], {
+            color: 'blue',
+            fillColor: 'lightblue',
+            fillOpacity: 0.5,
+            radius: 20
+        }).addTo(map);
+
+        var bikeMarker = L.marker([10.803957, 78.686576], { icon: bikeIcon }).addTo(map)
+            .bindPopup("<b>Bike Location</b><br>Name: SSSSYYY");
+
+        // Rectangle /Square User_0
+        var user0Rectangle = L.rectangle([
+            [10.813993, 78.683747],
+            [10.814993, 78.689747]
+        ], {
+            color: "blue",
+            fillColor: "lightblue",
+            fillOpacity: 0.5
+        }).addTo(map);
+
+        var user0Marker = L.marker([10.813993, 78.683747], { icon: User_0 }).addTo(map)
+            .bindPopup("<b>Car Location</b><br>Name: SAAAII");
+
+        // Polygon
+        var carPolygon = L.polygon([
+            [10.775, 78.686],
+            [10.776, 78.687],
+            [10.777, 78.6865],
+            [10.777, 78.6855],
+            [10.776, 78.685],
+            [10.775, 78.6855]
+        ], {
+            color: "orange",
+            fillColor: "yellow",
+            fillOpacity: 0.5
+        }).addTo(map);
+
+        const carLabel = L.divIcon({
+            className: 'car-label',
+            html: '<b>Car Location</b><br>Name: SAAAII',
+            iconSize: [100, 40]
+        });
+
+        var carMarker = L.marker([10.775159, 78.686096], { icon: carIcon }).addTo(map);
+        var carLabelMarker = L.marker([10.775159, 78.686096], { icon: carLabel }).addTo(map);
+
+        // User 3
+        var truckCircle = L.circle([10.777878, 78.671245], {
+            color: 'green',
+            fillColor: 'lightgreen',
+            fillOpacity: 0.5,
+            radius: 30
+        }).addTo(map);
+
+        var truckMarker = L.marker([10.777878, 78.671245], { icon: truckIcon }).addTo(map)
+            .bindPopup(`
+                <b>Truck Location</b><br>
+                Name: KKKK<br>
+                Sex: M<br>
+                Another Line<br>
+                More Info Here<br>
+                <a href="https://example.com" target="_blank">Visit Website</a>
+            `);
+
+        // Define road coordinates
+        var roadCoordinates = [
+            [10.826364, 78.697155],
+            [10.825387, 78.697104],
+            [10.824186, 78.697110]
+        ];
+
+        var roadPolyline = L.polyline(roadCoordinates, {
+            color: 'red',
+            weight: 5,
+            opacity: 0.7
+        }).addTo(map);
+
+        // Define moving icon
+        var movingMarker = L.marker(roadCoordinates[0], { icon: User_0 }).addTo(map);
+
+        function moveMarkerSmoothly(marker, coords, speed, steps) {
+            let index = 0;
+
+            function interpolate(lat1, lon1, lat2, lon2, factor) {
+                return [
+                    lat1 + (lat2 - lat1) * factor,
+                    lon1 + (lon2 - lon1) * factor
+                ];
+            }
+
+            function animate() {
+                if (index < coords.length - 1) {
+                    let [lat1, lon1] = coords[index];
+                    let [lat2, lon2] = coords[index + 1];
+                    let step = 0;
+
+                    function stepMove() {
+                        if (step <= steps) {
+                            let newPos = interpolate(lat1, lon1, lat2, lon2, step / steps);
+                            marker.setLatLng(newPos);
+                            step++;
+                            setTimeout(stepMove, speed / steps);
+                        } else {
+                            index++;
+                            setTimeout(animate, speed);
+                        }
+                    }
+                    stepMove();
+                }
+            }
+            animate();
+        }
+
+        moveMarkerSmoothly(movingMarker, roadCoordinates, 1000, 100);
+
+        // Toggle visibility functions
+        document.getElementById('toggleBike').addEventListener('change', function() {
+            if (this.checked) {
+                bikeCircle.addTo(map);
+                bikeMarker.addTo(map);
+            } else {
+                map.removeLayer(bikeCircle);
+                map.removeLayer(bikeMarker);
+            }
+        });
+
+        document.getElementById('toggleCar').addEventListener('change', function() {
+            if (this.checked) {
+                carPolygon.addTo(map);
+                carMarker.addTo(map);
+                carLabelMarker.addTo(map);
+            } else {
+                map.removeLayer(carPolygon);
+                map.removeLayer(carMarker);
+                map.removeLayer(carLabelMarker);
+            }
+        });
+
+        document.getElementById('toggleTruck').addEventListener('change', function() {
+            if (this.checked) {
+                truckCircle.addTo(map);
+                truckMarker.addTo(map);
+            } else {
+                map.removeLayer(truckCircle);
+                map.removeLayer(truckMarker);
+            }
+        });
+
+        document.getElementById('toggleUser0').addEventListener('change', function() {
+            if (this.checked) {
+                user0Rectangle.addTo(map);
+                user0Marker.addTo(map);
+            } else {
+                map.removeLayer(user0Rectangle);
+                map.removeLayer(user0Marker);
+            }
+        });
+
+        document.getElementById('toggleRoad').addEventListener('change', function() {
+            if (this.checked) {
+                roadPolyline.addTo(map);
+                movingMarker.addTo(map);
+
+            } else {
+                map.removeLayer(roadPolyline);
+                map.removeLayer(movingMarker);
+            }
+        });
+    </script>
+</body>
+</html>
+
+movingMarker
