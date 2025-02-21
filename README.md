@@ -7,6 +7,76 @@ OpenStreetMap (OSM)
 https://tpj-root.github.io/OpenStreetMap_Tag/
 
 
+```
+https://github.com/mapnik/mapnik
+https://github.com/Leaflet/Leaflet
+
+```
+
+
+
+
+API
+
+
+```
+getRoadName 
+https://nominatim.openstreetmap.org/reverse?format=json&lat=10.803017&lon=78.687915
+
+https://nominatim.openstreetmap.org/reverse?format=json&lat=10.802037&lon=78.691579
+
+```
+
+
+ 
+
+ ```
+import requests
+
+lat, lon = 47.6097, -122.3331  # Example coordinates (Seattle)
+url = f"https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}"
+
+response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+data = response.json()
+
+if "address" in data:
+    print("Road Name:", data["address"].get("road", "Unknown"))
+
+
+ ```
+
+
+
+class   "amenity"
+type    "hospital"
+
+class   "highway"
+type    "primary"
+
+
+https://nominatim.openstreetmap.org/reverse?format=json&lat=10.802527&lon=78.691453&addressdetails=1
+
+
+
+
+```
+curl -X POST "http://overpass-api.de/api/interpreter" --data-urlencode 'data=
+[out:json];
+(
+  node(around:1000,10.802527,78.691453);
+  way(around:1000,10.802527,78.691453);
+  relation(around:1000,10.802527,78.691453);
+);
+out center tags;
+' >>OUTPUT.json
+
+
+```
+
+
+
+
+
 ### To-Do List
 
 - [ x ]      Start the project  
