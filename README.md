@@ -18,13 +18,50 @@ https://github.com/Leaflet/Leaflet
 
 **Leaflet**
 
+```
+
+Basemap providers
 
 
 
+L.GridLayer.GoogleMutant
+L.MapkitMutant
+L.TileLayer.HERE
+
+Leaflet.TileLayer.Swiss   **
+leaflet-providers **
+
+
+Drawing into map
+
+allmaps-leaflet  *** 
 
 
 
+```
 
+```
+
+# Make plan for cover the area view capture the area
+GeoRasterLayer
+https://geotiff.github.io/georaster-layer-for-leaflet-example/
+```
+
+
+```
+Animation
+
+Leaflet.CanvasLayer.Field
+https://github.com/IHCantabria/Leaflet.CanvasLayer.Field?tab=readme-ov-file
+
+```
+
+```
+PLAN
+Leaflet.ImageOverlay.OGCAPI
+https://ivansanchez.gitlab.io/leaflet.imageoverlay.ogcapi/demo.html
+
+```
 
 
 
@@ -33,6 +70,108 @@ https://github.com/Leaflet/Leaflet
 
 
 ```
+MAKE OWN
+Leaflet.TileLayer.MBTiles
+
+
+
+https://observablehq.com/@allmaps/leaflet-plugin
+
+
+
+```
+
+
+
+
+https://leafletjs.com/reference.html#geojson-options
+
+
+
+STUDY_HOW WORK
+
+```
+https://github.com/johan/world.geo.json
+
+
+
+Leaflet.TileLayer.MBTiles
+https://github.com/mapbox/mbtiles-spec
+
+https://ivansanchez.gitlab.io/Leaflet.TileLayer.MBTiles/demo/demo.html
+
+https://wiki.openstreetmap.org/wiki/Raster_tiles#Using_tiles
+
+
+
+https://github.com/mapbox/mbtiles-spec/blob/master/1.3/spec.md
+```
+
+
+
+
+
+```
+
+https://overpass-turbo.eu/
+
+
+
+
+
+This query returned quite a lot of data (approx. 7 MB).
+
+Your browser may have a hard time trying to render this. Do you really want to continue?
+
+
+[out:json];
+relation["admin_level"="2"]["name"="India"];
+out geom;
+
+
+
+wget -O india.geojson "https://overpass-api.de/api/interpreter?data=[out:json];relation[\"admin_level\"=\"2\"][\"name\"=\"India\"];out geom;"
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+LAYER_LIST
+
+
+TREES  {tree planting status and growing report}
+VECHILE_COUNT ( each family (bikes cars,))
+professional{like doctor home, enginers, lawyer, police like that}
+advertisement{offers , food, product discount, }
+Sale(land, home. )
+Sale(used product like bike and care home products)
+Rent(office, home, comerisal)
+Rent(commercial building)
+freelance(user uploading profile (work from home))
+freelance (Individual worker)(electrician, carpenter, pest control)
+
+
+hospital (private, gov)
+clinic (private)
+school (private, gov)
+hardware_shop(private)
+
+
+
+
+
+
+
+
 
 
 API
@@ -45,6 +184,12 @@ https://nominatim.openstreetmap.org/reverse?format=json&lat=10.803017&lon=78.687
 https://nominatim.openstreetmap.org/reverse?format=json&lat=10.802037&lon=78.691579
 
 ```
+
+
+
+
+
+
 
 
  
