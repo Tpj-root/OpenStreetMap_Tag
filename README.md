@@ -129,6 +129,20 @@ relation["admin_level"="2"]["name"="India"];
 out geom;
 
 
+[out:json];
+relation["admin_level"="4"]["name"="Tamil Nadu"];
+out geom;
+
+
+[out:json];
+area["name"="Tamil Nadu"]["admin_level"="4"]->.a;
+relation["admin_level"="6"](area.a);
+out tags;
+
+
+
+
+
 
 wget -O india.geojson "https://overpass-api.de/api/interpreter?data=[out:json];relation[\"admin_level\"=\"2\"][\"name\"=\"India\"];out geom;"
 
