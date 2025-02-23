@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Multiple Lines on Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h3>Enter Coordinates:</h3>
+
+    <div>
+        <textarea id="inputBox1" rows="3" cols="50" placeholder="Enter coordinates for Line 1"></textarea>
+        <button onclick="drawLine('inputBox1', 'red')">Draw Line 1</button>
+    </div>
+    
+    <div>
+        <textarea id="inputBox2" rows="3" cols="50" placeholder="Enter coordinates for Line 2"></textarea>
+        <button onclick="drawLine('inputBox2', 'blue')">Draw Line 2</button>
+    </div>
+
+    <div>
+        <textarea id="inputBox3" rows="3" cols="50" placeholder="Enter coordinates for Line 3"></textarea>
+        <button onclick="drawLine('inputBox3', 'green')">Draw Line 3</button>
+    </div>
+
+    <div>
+        <textarea id="inputBox4" rows="3" cols="50" placeholder="Enter coordinates for Line 4"></textarea>
+        <button onclick="drawLine('inputBox4', 'purple')">Draw Line 4</button>
+    </div>
+
+    <div id="map" style="height: 500px; margin-top: 10px;"></div>
+
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([22.3511, 78.6677], 5); // Center on India
+
+        // Load OpenStreetMap tiles
+        //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //    attribution: '© OpenStreetMap contributors'
+        //}).addTo(map);
+
+		// only english
+		//L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+		//    attribution: '© OpenStreetMap contributors & CARTO',
+		//    subdomains: 'abcd'
+		//}).addTo(map);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap contributors & CARTO',
+            subdomains: 'abcd'
+        }).addTo(map);
+
+
+        var drawnLines = []; // Store drawn lines
+
+        function drawLine(inputId, color) {
+            var inputText = document.getElementById(inputId).value.trim();
+            if (!inputText) return alert("Enter valid coordinates!");
+
+            try {
+                var inputArray = JSON.parse("[" + inputText + "]"); // Convert text to JSON array
+                var latLngs = inputArray.map(coord => [coord[1], coord[0]]); // Convert to [lat, lng]
+
+                // Draw the polyline
+                var line = L.polyline(latLngs, { color: color, weight: 3 }).addTo(map);
+                drawnLines.push(line);
+
+                // Fit the map to the line
+                map.fitBounds(line.getBounds());
+
+                // Add click event to show all points
+                line.on('click', function () {
+                    latLngs.forEach((point, index) => {
+                        L.marker(point).addTo(map)
+                            .bindPopup(`<b>Point ${index + 1}</b><br>Lat: ${point[0]}, Lng: ${point[1]}`)
+                            .openPopup();
+                    });
+                });
+
+            } catch (error) {
+                alert("Invalid input format! Use correct JSON format.");
+            }
+        }
+    </script>
+</body>
+</html>
