@@ -6,7 +6,16 @@ sudo apt install libmapnik-dev mapnik-utils python3-mapnik
 
 
 
+JOSM (GUI Viewer)
 
+sudo apt install josm
+
+
+
+
+sudo apt install qgis
+sudo apt update
+sudo apt install qgis qgis-plugin-grass
 
 
 
@@ -39,6 +48,10 @@ Download_
 
 ```
 https://planet.openstreetmap.org/
+
+
+API DOWNLOAD 
+https://overpass-turbo.eu/
 
 ```
 
